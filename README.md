@@ -38,7 +38,7 @@ A paragraph explaining your work, who you are, and why you made it.
 Simple, understandable installation instructions!
 
 ```bash
-pip install my-package
+pip install -r requirements.txt
 ```
 
 And be sure to specify any other minimum requirements like Python versions or operating systems.
