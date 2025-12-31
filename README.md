@@ -1,51 +1,78 @@
-# 📦 Crypto Currency Ticker
+# Python Binance Trading Bot
 
+This is a Python-based trading bot that uses the Binance API to execute trading strategies.
 
-## 🌟 Highlights
+## Features
 
-- Some functionality made easy!
-- This problem handled
-- etc.
+- **Backtesting:** Test your trading strategies on historical data.
+- **Live Trading (WIP):** Execute trades in real-time.
+- **Extensible:** Easily add new trading strategies.
 
+## Getting Started
 
-## ℹ️ Overview
+### Prerequisites
 
-A paragraph explaining your work, who you are, and why you made it.
+- Python 3.8+
+- Binance API Key and Secret
 
+### Installation
 
-### ✍️ Authors
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/your-repository.git
+    cd your-repository
+    ```
 
-- [Armand Vieau](https://github.com/AlTAR333)
-- [Charles Stucke](https://github.com/cstucke)
-- [Karma Soliman](https://github.com/Karma-Soliman)
-- [Minkyu Shim](https://github.com/minkyu-shim)
-- [Peushi Ariyawansa](https://github.com/Peushi)
-- [Tristan Gandiboyina](https://github.com/Tristan-Tenders)
+2.  **Create and activate a virtual environment:**
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
+    ```
 
-## 🚀 Usage
+3.  **Install the dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-*Show off what your software looks like in action! Try to limit it to one-liners if possible and don't delve into API specifics.*
+4.  **Set up your environment variables:**
+    -   Create a `.env` file in the root directory of the project.
+    -   Add your Binance API key and secret to the `.env` file:
+        ```
+        BINANCE_API_KEY=your_api_key
+        BINANCE_API_SECRET=your_api_secret
+        ```
 
-```py
->>> import mypackage
->>> mypackage.do_stuff()
-'Oh yeah!'
-```
+### Usage
 
+#### Backtesting
 
-## ⬇️ Installation
-
-Simple, understandable installation instructions!
+To run a backtest of your trading strategy, use the following command:
 
 ```bash
-pip install -r requirements.txt
+python main.py --mode backtest --start-date "1 month ago UTC"
 ```
 
-And be sure to specify any other minimum requirements like Python versions or operating systems.
+You can customize the start date for the backtest by changing the `--start-date` argument.
 
-*You may be inclined to add development instructions here, don't.*
+#### Live Trading
 
+Live trading is not yet implemented.
 
-## 💭 Feedback and Contributing
+## Project Structure
 
-Feel free to leave a comment or start a discussion [here](https://github.com/cstucke/Crypto-Currency-Ticker/discussions)!
+```
+├── config/         # Configuration files
+├── data/           # Data files (e.g., historical data)
+├── src/            # Source code
+│   ├── api/        # API clients (e.g., Binance)
+│   ├── trading/    # Trading strategies and backtesting
+│   └── utils/      # Utility functions (e.g., logger)
+├── tests/          # Test files
+├── main.py         # Main entry point of the application
+├── requirements.txt # Project dependencies
+└── README.md       # This file
+```
+
+## Disclaimer
+
+This project is for educational purposes only. Do not use it for live trading without understanding the risks involved.
