@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6f266aa-0f19-478e-8e6a-7c9e91d517f5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/binance_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/binance_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trading/strategy.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/trading/strategy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/logger.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +86,9 @@
       <workItem from="1765661528564" duration="33000" />
       <workItem from="1765816085967" duration="1096000" />
       <workItem from="1765968144572" duration="836000" />
+      <workItem from="1765980285223" duration="512000" />
+      <workItem from="1766132684947" duration="211000" />
+      <workItem from="1767187828975" duration="334000" />
     </task>
     <servers />
   </component>

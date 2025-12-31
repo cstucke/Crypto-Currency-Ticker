@@ -1,9 +1,2 @@
-# IDE and virtual environment folders
-.idea/
-.venv/
-
-# Configuration files with sensitive data
-config/settings.py
-
-# Data files
-data/
+# Environment variables
+.env
