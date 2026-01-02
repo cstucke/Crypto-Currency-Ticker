@@ -1,6 +1,6 @@
 import argparse
 from src.api.binance_client import get_binance_client
-from src.trading.strategy import TradingStrategy
+from src.trading.strategy import MovingAverageCrossoverStrategy
 from src.trading.backtest import Backtester
 from config import settings
 from src.utils.logger import get_logger
@@ -14,7 +14,7 @@ def main():
     args = parser.parse_args()
 
     binance_client = get_binance_client()
-    strategy = TradingStrategy(settings.SHORT_WINDOW, settings.LONG_WINDOW)
+    strategy = MovingAverageCrossoverStrategy(settings.SHORT_WINDOW, settings.LONG_WINDOW)
 
     if args.mode == 'backtest':
         logger.info("Running in backtest mode")
