@@ -66,3 +66,53 @@
 2025-12-31 14:40:23,933 - src.trading.backtest - INFO - Final Capital: 10079.68
 2025-12-31 14:40:23,933 - src.trading.backtest - INFO - Profit: 79.68
 2025-12-31 14:40:23,933 - src.trading.backtest - INFO - Profit Percentage: 0.80%
+2025-12-31 14:50:31,144 - __main__ - INFO - Running in backtest mode
+2025-12-31 14:50:31,144 - src.trading.backtest - INFO - Starting backtest...
+2025-12-31 14:50:31,144 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
+2025-12-31 14:50:31,670 - src.trading.strategy - INFO - Generating trading signals
+2025-12-31 14:50:31,673 - src.trading.backtest - INFO - Simulating trades...
+2025-12-31 14:50:31,674 - src.trading.backtest - INFO - Buying at 88712.16 on 1767112200000
+2025-12-31 14:50:31,674 - src.trading.backtest - INFO - Selling at 88304.0 on 1767120300000
+2025-12-31 14:50:31,674 - src.trading.backtest - INFO - Buying at 88485.49 on 1767138300000
+2025-12-31 14:50:31,675 - src.trading.backtest - INFO - Backtest finished. Results:
+2025-12-31 14:50:31,675 - src.trading.backtest - INFO - Initial Capital: 10000
+2025-12-31 14:50:31,675 - src.trading.backtest - INFO - Final Capital: 9939.59
+2025-12-31 14:50:31,675 - src.trading.backtest - INFO - Profit: -60.41
+2025-12-31 14:50:31,675 - src.trading.backtest - INFO - Profit Percentage: -0.60%
+2025-12-31 14:50:51,864 - __main__ - INFO - Running in backtest mode
+2025-12-31 14:50:51,864 - src.trading.backtest - INFO - Starting backtest...
+2025-12-31 14:50:51,864 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
+2025-12-31 14:50:52,374 - src.trading.strategy - INFO - Generating trading signals
+2025-12-31 14:50:52,377 - src.trading.backtest - INFO - Simulating trades...
+2025-12-31 14:50:52,377 - src.trading.backtest - INFO - Buying at 88712.16 on 1767112200000
+2025-12-31 14:50:52,378 - src.trading.backtest - INFO - Selling at 88304.0 on 1767120300000
+2025-12-31 14:50:52,378 - src.trading.backtest - INFO - Buying at 88485.49 on 1767138300000
+2025-12-31 14:50:52,379 - src.trading.backtest - INFO - Backtest finished. Results:
+2025-12-31 14:50:52,379 - src.trading.backtest - INFO - Initial Capital: 10000
+2025-12-31 14:50:52,379 - src.trading.backtest - INFO - Final Capital: 9945.84
+2025-12-31 14:50:52,379 - src.trading.backtest - INFO - Profit: -54.16
+2025-12-31 14:50:52,379 - src.trading.backtest - INFO - Profit Percentage: -0.54%
+2026-01-02 11:17:23,173 - src.trading.strategy - INFO - Generating trading signals for Moving Average Crossover Strategy
+2026-01-02 11:17:23,177 - src.trading.strategy - INFO - Generating trading signals for RSI Strategy
+2026-01-02 11:21:07,428 - __main__ - INFO - Running in backtest mode
+2026-01-02 11:21:07,431 - src.trading.backtest - INFO - Starting backtest...
+2026-01-02 11:21:07,431 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
+2026-01-02 11:21:07,981 - src.trading.strategy - INFO - Generating trading signals for Moving Average Crossover Strategy
+2026-01-02 11:21:07,988 - src.trading.backtest - INFO - Simulating trades...
+2026-01-02 11:21:07,989 - src.trading.backtest - INFO - Buying at 87990.05 on 1767272400000
+2026-01-02 11:21:07,991 - src.trading.backtest - INFO - Backtest finished. Results:
+2026-01-02 11:21:07,991 - src.trading.backtest - INFO - Initial Capital: 10000
+2026-01-02 11:21:07,991 - src.trading.backtest - INFO - Final Capital: 10208.16
+2026-01-02 11:21:07,991 - src.trading.backtest - INFO - Profit: 208.16
+2026-01-02 11:21:07,991 - src.trading.backtest - INFO - Profit Percentage: 2.08%
+2026-01-02 11:21:29,870 - __main__ - INFO - Running in backtest mode
+2026-01-02 11:21:29,870 - src.trading.backtest - INFO - Starting backtest...
+2026-01-02 11:21:29,870 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
+2026-01-02 11:21:30,353 - src.trading.strategy - INFO - Generating trading signals for Moving Average Crossover Strategy
+2026-01-02 11:21:30,356 - src.trading.backtest - INFO - Simulating trades...
+2026-01-02 11:21:30,356 - src.trading.backtest - INFO - Buying at 87990.05 on 1767272400000
+2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Backtest finished. Results:
+2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Initial Capital: 10000
+2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Final Capital: 10213.45
+2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Profit: 213.45
+2026-01-02 11:21:30,358 - src.trading.backtest - INFO - Profit Percentage: 2.13%
