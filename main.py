@@ -3,6 +3,7 @@ from src.api.binance_client import get_binance_client
 from src.trading.strategy import (
     MovingAverageCrossoverStrategy,
     RSIStrategy,
+    YOLOStrategy,
 )
 from src.trading.backtest import Backtester
 from config import settings
@@ -24,6 +25,11 @@ STRATEGIES = {
         "name": "RSI Strategy",
         "class": RSIStrategy,
         "params": {"rsi_period": 14, "rsi_overbought": 70, "rsi_oversold": 30},
+    },
+    "yolo": {
+        "name": "YOLO Strategy - Buy the Dip, YOLO the Rip",
+        "class": YOLOStrategy,
+        "params": {"dip_threshold": 3, "rip_threshold": 3},
     },
 }
 
@@ -51,7 +57,7 @@ def main():
         type=str,
         default="ma",
         choices=list(STRATEGIES.keys()),
-        help="Trading strategy to use (default: ma). Options: ma, rsi",
+        help="Trading strategy to use (default: ma). Options: ma, rsi, yolo",
     )
     parser.add_argument(
         "--mode",

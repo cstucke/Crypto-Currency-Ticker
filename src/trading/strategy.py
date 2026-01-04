@@ -64,3 +64,30 @@ class RSIStrategy(TradingStrategy):
         df['positions'] = df['signal'].diff()
 
         return df
+
+
+class YOLOStrategy(TradingStrategy):
+    def __init__(self, dip_threshold=3.0, rip_threshold=3.0):
+        self.dip_threshold = dip_threshold
+        self.rip_threshold = rip_threshold
+
+    def generate_signals(self, klines):
+        logger.info("Generating trading signals for YOLO Strategy")
+        df = pd.DataFrame(klines,
+                          columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'close_time',
+                                   'quote_asset_volume',
+                                   'number_of_trades', 'taker_buy_base_asset_volume',
+                                   'taker_buy_quote_asset_volume',
+                                   'ignore'])
+        df['close'] = pd.to_numeric(df['close'])
+        df['open'] = pd.to_numeric(df['open'])
+
+        # Calculate percentage change for each candle
+        df['pct_change'] = ((df['close'] - df['open']) / df['open']) * 100
+
+        df['signal'] = 0
+        df.loc[df['pct_change'] <= -self.dip_threshold, 'signal'] = 1  # Buy signal
+        df.loc[df['pct_change'] >= self.rip_threshold, 'signal'] = -1  # Sell signal
+        df['positions'] = df['signal'].diff()
+
+        return df
