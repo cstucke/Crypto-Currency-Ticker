@@ -116,3 +116,21 @@
 2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Final Capital: 10213.45
 2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Profit: 213.45
 2026-01-02 11:21:30,358 - src.trading.backtest - INFO - Profit Percentage: 2.13%
+2026-01-04 17:29:38,907 - __main__ - INFO - Loading strategy: Bollinger Bands Strategy
+2026-01-04 17:29:38,908 - __main__ - INFO - Strategy loaded successfully: Bollinger Bands Strategy
+2026-01-04 17:29:38,909 - __main__ - INFO - Running in backtest mode
+2026-01-04 17:29:38,909 - src.trading.backtest - INFO - Starting backtest...
+2026-01-04 17:29:38,910 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
+2026-01-04 17:29:39,425 - src.trading.strategy - INFO - Generating trading signals for Bollinger Bands Strategy
+2026-01-04 17:29:39,440 - src.trading.backtest - INFO - Simulating trades...
+2026-01-04 17:29:39,443 - src.trading.backtest - INFO - Buying at 90520.54 on 1767477600000
+2026-01-04 17:29:39,444 - src.trading.backtest - INFO - Selling at 91399.99 on 1767484800000
+2026-01-04 17:29:39,444 - src.trading.backtest - INFO - Buying at 91098.32 on 1767485700000
+2026-01-04 17:29:39,445 - src.trading.backtest - INFO - Selling at 91670.01 on 1767506400000
+2026-01-04 17:29:39,446 - src.trading.backtest - INFO - Buying at 91544.14 on 1767507300000
+2026-01-04 17:29:39,447 - src.trading.backtest - INFO - Selling at 91150.98 on 1767530700000
+2026-01-04 17:29:39,448 - src.trading.backtest - INFO - Backtest finished. Results:
+2026-01-04 17:29:39,449 - src.trading.backtest - INFO - Initial Capital: 10000
+2026-01-04 17:29:39,449 - src.trading.backtest - INFO - Final Capital: 10116.88
+2026-01-04 17:29:39,449 - src.trading.backtest - INFO - Profit: 116.88
+2026-01-04 17:29:39,449 - src.trading.backtest - INFO - Profit Percentage: 1.17%
