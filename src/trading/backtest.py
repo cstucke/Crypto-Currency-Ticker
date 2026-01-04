@@ -3,19 +3,26 @@ from src.utils.logger import get_logger
 from src.api.binance_client import BinanceClient
 from src.trading.strategy import TradingStrategy
 from config import settings
+from datetime import datetime, timezone
 
 logger = get_logger(__name__)
 
 class Backtester:
-    def __init__(self, client: BinanceClient, strategy: TradingStrategy, symbol: str, interval: str, start_date: str):
+    def __init__(self, client: BinanceClient, strategy: TradingStrategy, symbol: str, interval: str, start_date: str, time_format: str):
         self.client = client
         self.strategy = strategy
         self.symbol = symbol
         self.interval = interval
         self.start_date = start_date
+        self.time_format = time_format
         self.initial_capital = settings.INITIAL_CAPITAL
         self.capital = settings.INITIAL_CAPITAL
         self.position = 0
+
+    def format_timestamp(self, timestamp):
+        if self.time_format == "human":
+            return datetime.fromtimestamp(timestamp / 1000, tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S %Z")
+        return timestamp
 
     def run(self):
         logger.info("Starting backtest...")
@@ -35,13 +42,15 @@ class Backtester:
                 if self.position == 0:
                     self.position = self.capital / row['close']
                     self.capital = 0
-                    logger.info(f"Buying at {row['close']} on {row['timestamp']}")
+                    formatted_time = self.format_timestamp(row['timestamp'])
+                    logger.info(f"Buying at {row['close']} on {formatted_time }")
 
             elif row['positions'] == -1.0: # Sell signal
                 if self.position > 0:
                     self.capital = self.position * row['close']
                     self.position = 0
-                    logger.info(f"Selling at {row['close']} on {row['timestamp']}")
+                    formatted_time = self.format_timestamp(row['timestamp'])
+                    logger.info(f"Selling at {row['close']} on {formatted_time}")
 
     def print_results(self, signals):
         logger.info("Backtest finished. Results:")
