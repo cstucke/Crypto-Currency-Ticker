@@ -89,5 +89,8 @@ class YOLOStrategy(TradingStrategy):
         df.loc[df['pct_change'] <= -self.dip_threshold, 'signal'] = 1  # Buy signal
         df.loc[df['pct_change'] >= self.rip_threshold, 'signal'] = -1  # Sell signal
         df['positions'] = df['signal'].diff()
+        num_buys = (df['pct_change'] <= -self.dip_threshold).sum()
+        num_sells = (df['pct_change'] >= self.rip_threshold).sum()
+        logger.info(f"Buy signals: {num_buys}, Sell signals: {num_sells}")
 
         return df

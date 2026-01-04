@@ -27,7 +27,7 @@ STRATEGIES = {
         "params": {"rsi_period": 14, "rsi_overbought": 70, "rsi_oversold": 30},
     },
     "yolo": {
-        "name": "YOLO Strategy - Buy the Dip, YOLO the Rip",
+        "name": "YOLO Strategy",
         "class": YOLOStrategy,
         "params": {"dip_threshold": 3, "rip_threshold": 3},
     },
