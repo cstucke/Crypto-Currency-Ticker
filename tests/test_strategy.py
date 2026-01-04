@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from src.trading.strategy import MovingAverageCrossoverStrategy, RSIStrategy
+from src.trading.strategy import MovingAverageCrossoverStrategy, RSIStrategy, VATSStrategy
 
 
 class TestStrategies(unittest.TestCase):
@@ -40,7 +40,6 @@ class TestStrategies(unittest.TestCase):
         result_df = strategy.generate_signals(self.klines)
         self.assertIn('signal', result_df.columns)
         self.assertIn('positions', result_df.columns)
-        # Add more specific assertions based on expected behavior
         self.assertEqual(result_df['signal'].iloc[-1], 0)
 
     def test_rsi_strategy(self):
@@ -49,9 +48,62 @@ class TestStrategies(unittest.TestCase):
         self.assertIn('rsi', result_df.columns)
         self.assertIn('signal', result_df.columns)
         self.assertIn('positions', result_df.columns)
-        # Add more specific assertions based on expected behavior
         self.assertEqual(result_df['signal'].iloc[-1], 1)
 
+    def test_vats_strategy_basic(self):
+        """Test VATS strategy generates valid signals."""
+        strategy = VATSStrategy(lookback_period=10, threshold=0.3, max_volatility=None)
+        result_df = strategy.generate_signals(self.klines)
+        self.assertIn("signal", result_df.columns)
+        self.assertIn("positions", result_df.columns)
+        self.assertIn("returns", result_df.columns)
+        self.assertIn("rolling_mean", result_df.columns)
+        self.assertIn("rolling_std", result_df.columns)
+        self.assertIn("vats_score", result_df.columns)
+        # Check signals are valid values (0, 1, or -1)
+        valid_signals = result_df["signal"].isin([0, 1, -1]).all()
+        self.assertTrue(valid_signals, "All signals should be 0, 1, or -1")
+
+
+    def test_vats_strategy_volatility_filter(self):
+        """Test VATS volatility filter works."""
+        # Strategy with very low volatility threshold
+        strategy = VATSStrategy(
+            lookback_period=10,
+            threshold=0.3,
+            max_volatility=0.0001,  # Very low threshold - will filter most signals
+        )
+        result_df = strategy.generate_signals(self.klines)
+
+        # Most signals should be filtered out (HOLD=0)
+        hold_signals = (result_df["signal"] == 0).sum()
+        total_signals = len(result_df)
+
+        # At least 50% should be HOLD due to volatility filter
+        self.assertGreater(
+            hold_signals / total_signals,
+            0.5,
+            "Volatility filter should cause more HOLD signals",
+        )
+
+    def test_vats_strategy_threshold_sensitivity(self):
+        """Test that higher threshold generates fewer signals."""
+        # Low threshold strategy (more sensitive)
+        strategy_low = VATSStrategy(lookback_period=10, threshold=0.2)
+        df_low = strategy_low.generate_signals(self.klines)
+        signals_low = (df_low["positions"] != 0).sum()
+
+        # High threshold strategy (less sensitive)
+        strategy_high = VATSStrategy(lookback_period=10, threshold=0.8)
+        df_high = strategy_high.generate_signals(self.klines)
+        signals_high = (df_high["positions"] != 0).sum()
+
+        # Lower threshold should generate more signals
+        self.assertGreaterEqual(
+            signals_low,
+            signals_high,
+            "Lower threshold should generate equal or more signals",
+        )
 
 if __name__ == '__main__':
     unittest.main()

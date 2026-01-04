@@ -3,6 +3,7 @@ from src.api.binance_client import get_binance_client
 from src.trading.strategy import (
     MovingAverageCrossoverStrategy,
     RSIStrategy,
+    VATSStrategy
 )
 from src.trading.backtest import Backtester
 from config import settings
@@ -25,8 +26,16 @@ STRATEGIES = {
         "class": RSIStrategy,
         "params": {"rsi_period": 14, "rsi_overbought": 70, "rsi_oversold": 30},
     },
+    "vats": {
+        "name": "VATS (Volatility-Adjusted Trend Score)",
+        "class": VATSStrategy,
+        "params": {
+            "lookback_period": 20,
+            "threshold": 0.5,
+            "max_volatility": None,
+        },
+    },
 }
-
 
 def get_strategy(strategy_name):
     if strategy_name not in STRATEGIES:
@@ -51,7 +60,7 @@ def main():
         type=str,
         default="ma",
         choices=list(STRATEGIES.keys()),
-        help="Trading strategy to use (default: ma). Options: ma, rsi",
+        help="Trading strategy to use (default: ma). Options: ma, rsi, vats",
     )
     parser.add_argument(
         "--mode",
