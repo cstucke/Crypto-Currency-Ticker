@@ -1,12 +1,23 @@
 from binance.client import Client
 from config import settings
 from src.utils.logger import get_logger
+import os
 
 logger = get_logger(__name__)
 
 class BinanceClient:
-    def __init__(self, api_key, api_secret):
-        self.client = Client(api_key, api_secret)
+    def __init__(self, api_key=None, api_secret=None, testnet=False):
+        # Allow None for public endpoints (backtesting)
+        if api_key and api_secret:
+            self.client = Client(api_key, api_secret, testnet=testnet)
+            if testnet:
+                logger.info("Connected to Binance TESTNET")
+            else:
+                logger.info("Connected to Binance LIVE")
+        else:
+            # Public client for backtesting
+            self.client = Client()
+            logger.info("Using public Binance API (no authentication)")
 
     def get_historical_klines(self, symbol, interval, start_str, end_str=None):
         logger.info(f"Fetching historical klines for {symbol} with interval {interval}")
@@ -31,6 +42,36 @@ class BinanceClient:
         except Exception as e:
             logger.error(f"Error placing order: {e}")
             return None
+    
+    def get_account_balance(self):
+        """Get account balances - only non-zero balances"""
+        logger.info("Fetching account balances...")
+        try:
+            account = self.client.get_account()
+            balances = {
+                asset['asset']: float(asset['free']) 
+                for asset in account['balances'] 
+                if float(asset['free']) > 0
+            }
+            return balances
+        except Exception as e:
+            logger.error(f"Error getting account balance: {e}")
+            return {}
+    
+    def get_account_info(self):
+        """Get full account information"""
+        try:
+            return self.client.get_account()
+        except Exception as e:
+            logger.error(f"Error getting account info: {e}")
+            return None
 
 def get_binance_client():
-    return BinanceClient(settings.API_KEY, settings.API_SECRET)
+    # Check if we should use testnet
+    use_testnet = os.environ.get('BINANCE_TESTNET', 'false').lower() == 'true'
+    
+    return BinanceClient(
+        settings.API_KEY, 
+        settings.API_SECRET,
+        testnet=use_testnet
+    )
