@@ -3,6 +3,7 @@ from src.api.binance_client import get_binance_client
 from src.trading.strategy import (
     MovingAverageCrossoverStrategy,
     RSIStrategy,
+    BollingerBandsStrategy
 )
 from src.trading.backtest import Backtester
 from config import settings
@@ -24,6 +25,14 @@ STRATEGIES = {
         "name": "RSI Strategy",
         "class": RSIStrategy,
         "params": {"rsi_period": 14, "rsi_overbought": 70, "rsi_oversold": 30},
+    },
+    "bb": {
+        "name": "Bollinger Bands Strategy",
+        "class": BollingerBandsStrategy,
+        "params": {
+            "window": 20,
+            "num_std": 2
+        },
     },
 }
 
@@ -51,7 +60,7 @@ def main():
         type=str,
         default="ma",
         choices=list(STRATEGIES.keys()),
-        help="Trading strategy to use (default: ma). Options: ma, rsi",
+        help="Trading strategy to use (default: ma). Options: ma, rsi, bb",
     )
     parser.add_argument(
         "--mode",
@@ -65,6 +74,13 @@ def main():
         type=str,
         default="1 day ago UTC",
         help="Start date for backtesting",
+    )
+    parser.add_argument(
+    "--time-format",
+    type=str,
+    default="unix",
+    choices=["unix", "human"],
+    help="Timestamp format for trade logs: unix or human (default: unix)",
     )
     args = parser.parse_args()
 
