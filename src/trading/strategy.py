@@ -64,3 +64,38 @@ class RSIStrategy(TradingStrategy):
         df['positions'] = df['signal'].diff()
 
         return df
+    
+class BollingerBandsStrategy(TradingStrategy):
+    def __init__(self, window=20, num_std=2):
+        self.window = window
+        self.num_std = num_std
+
+    def generate_signals(self, klines):
+        logger.info("Generating trading signals for Bollinger Bands Strategy")
+
+        df = pd.DataFrame(
+            klines,
+            columns=[
+                'timestamp', 'open', 'high', 'low', 'close', 'volume',
+                'close_time', 'quote_asset_volume', 'number_of_trades',
+                'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume',
+                'ignore'
+            ]
+        )
+
+        df['close'] = pd.to_numeric(df['close'])
+
+        # Bollinger Bands calculation
+        df['middle_band'] = df['close'].rolling(window=self.window).mean()
+        df['std'] = df['close'].rolling(window=self.window).std()
+        df['upper_band'] = df['middle_band'] + self.num_std * df['std']
+        df['lower_band'] = df['middle_band'] - self.num_std * df['std']
+
+        # Signals
+        df['signal'] = 0
+        df.loc[df['close'] < df['lower_band'], 'signal'] = 1   # Buy
+        df.loc[df['close'] > df['upper_band'], 'signal'] = -1  # Sell
+
+        df['positions'] = df['signal'].diff()
+
+        return df
