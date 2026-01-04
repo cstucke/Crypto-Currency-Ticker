@@ -78,7 +78,7 @@ class VATSStrategy(TradingStrategy):
     Generates a BUY, SELL, or HOLD signal based on a volatility-adjusted trend score.
     """
 
-    def __init__(self, lookback_period=12, threshold=0.02, max_volatility=None):
+    def __init__(self, lookback_period=20, threshold=0.5, max_volatility=None):
         self.lookback_period = lookback_period
         self.threshold = threshold
         self.max_volatility = max_volatility

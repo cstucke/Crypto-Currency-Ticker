@@ -116,16 +116,31 @@
 2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Final Capital: 10213.45
 2026-01-02 11:21:30,357 - src.trading.backtest - INFO - Profit: 213.45
 2026-01-02 11:21:30,358 - src.trading.backtest - INFO - Profit Percentage: 2.13%
-2026-01-03 15:31:27,925 - __main__ - INFO - Loading strategy: VATS (Volatility-Adjusted Trend Score)
-2026-01-03 15:31:27,926 - __main__ - INFO - Strategy loaded successfully: VATS (Volatility-Adjusted Trend Score)
-2026-01-03 15:31:27,926 - __main__ - INFO - Running in backtest mode
-2026-01-03 15:31:27,926 - src.trading.backtest - INFO - Starting backtest...
-2026-01-03 15:31:27,926 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
-2026-01-03 15:31:28,285 - src.trading.strategy - INFO - Generating trading signals for VATS Strategy
-2026-01-03 15:31:28,303 - src.trading.strategy - INFO - VATS debug — mean score=0.0663, max score=0.2590, min score=-0.1186
-2026-01-03 15:31:28,303 - src.trading.backtest - INFO - Simulating trades...
-2026-01-03 15:31:28,309 - src.trading.backtest - INFO - Backtest finished. Results:
-2026-01-03 15:31:28,310 - src.trading.backtest - INFO - Initial Capital: 10000
-2026-01-03 15:31:28,310 - src.trading.backtest - INFO - Final Capital: 10000.00
-2026-01-03 15:31:28,310 - src.trading.backtest - INFO - Profit: 0.00
-2026-01-03 15:31:28,310 - src.trading.backtest - INFO - Profit Percentage: 0.00
+2026-01-04 16:04:09,704 - __main__ - INFO - Loading strategy: VATS (Volatility-Adjusted Trend Score)
+2026-01-04 16:04:09,704 - __main__ - INFO - Strategy loaded successfully: VATS (Volatility-Adjusted Trend Score)
+2026-01-04 16:04:09,705 - __main__ - INFO - Running in backtest mode
+2026-01-04 16:04:09,705 - src.trading.backtest - INFO - Starting backtest...
+2026-01-04 16:04:09,705 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
+2026-01-04 16:04:10,923 - src.trading.strategy - INFO - Generating trading signals for VATS Strategy
+2026-01-04 16:04:10,945 - src.trading.strategy - INFO - VATS debug — mean score=0.0136, max score=0.5455, min score=-0.6805
+2026-01-04 16:04:10,946 - src.trading.backtest - INFO - Simulating trades...
+2026-01-04 16:04:10,952 - src.trading.backtest - INFO - Buying at 91267.28 on 1765134900000
+2026-01-04 16:04:10,987 - src.trading.backtest - INFO - Backtest finished. Results:
+2026-01-04 16:04:10,987 - src.trading.backtest - INFO - Initial Capital: 10000
+2026-01-04 16:04:10,987 - src.trading.backtest - INFO - Final Capital: 10006.82
+2026-01-04 16:04:10,987 - src.trading.backtest - INFO - Profit: 6.82
+2026-01-04 16:04:10,987 - src.trading.backtest - INFO - Profit Percentage: 0.07%
+2026-01-04 16:06:40,459 - __main__ - INFO - Loading strategy: VATS (Volatility-Adjusted Trend Score)
+2026-01-04 16:06:40,460 - __main__ - INFO - Strategy loaded successfully: VATS (Volatility-Adjusted Trend Score)
+2026-01-04 16:06:40,460 - __main__ - INFO - Running in backtest mode
+2026-01-04 16:06:40,460 - src.trading.backtest - INFO - Starting backtest...
+2026-01-04 16:06:40,460 - src.api.binance_client - INFO - Fetching historical klines for BTCUSDT with interval 15m
+2026-01-04 16:07:04,982 - src.trading.strategy - INFO - Generating trading signals for VATS Strategy
+2026-01-04 16:07:05,059 - src.trading.strategy - INFO - VATS debug — mean score=0.0075, max score=0.8414, min score=-1.1589
+2026-01-04 16:07:05,059 - src.trading.backtest - INFO - Simulating trades...
+2026-01-04 16:07:05,073 - src.trading.backtest - INFO - Buying at 71505.94 on 1730470500000
+2026-01-04 16:07:05,449 - src.trading.backtest - INFO - Backtest finished. Results:
+2026-01-04 16:07:05,449 - src.trading.backtest - INFO - Initial Capital: 10000
+2026-01-04 16:07:05,449 - src.trading.backtest - INFO - Final Capital: 12772.30
+2026-01-04 16:07:05,449 - src.trading.backtest - INFO - Profit: 2772.30
+2026-01-04 16:07:05,449 - src.trading.backtest - INFO - Profit Percentage: 27.72%

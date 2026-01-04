@@ -30,8 +30,8 @@ STRATEGIES = {
         "name": "VATS (Volatility-Adjusted Trend Score)",
         "class": VATSStrategy,
         "params": {
-            "lookback_period": 12,
-            "threshold": 0.02,
+            "lookback_period": 20,
+            "threshold": 0.5,
             "max_volatility": None,
         },
     },
