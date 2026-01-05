@@ -40,4 +40,24 @@ class VWAPStrategy(TradingStrategy):
         df['rolling_vp_sum'] = df['vp'].rolling(window=self.window).sum()
         df['rolling_vol_sum'] = df['volume'].rolling(window=self.window).sum()
 
+        # Actual VWAP Calculation based on rolling components
+        df['vwap'] = df['rolling_vp_sum'] / df['rolling_vol_sum']
+
+        """
+        Generating final signals
         
+        BUY when close crosses above VWAP (Bullish condition)
+        Sell when close crosses below VWAP (Bearish condition)
+        where:
+            1 = Buy Order, -1 = Sell Order
+        """
+
+        df['signal'] = 0
+
+        df.loc[df['close'] > df['vwap'], 'signal'] = 1
+
+        df.loc[df['close'] < df['vwap'], 'signal'] = -1
+
+        df['positions'] = df['signal'].diff()
+
+        return df
