@@ -36,6 +36,7 @@ STRATEGIES = {
             "num_std": 2,
         },
     },
+            "num_std": 2
     "vats": {
         "name": "VATS (Volatility-Adjusted Trend Score)",
         "class": VATSStrategy,
