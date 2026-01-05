@@ -3,9 +3,10 @@ from src.api.binance_client import get_binance_client
 from src.trading.strategy import (
     MovingAverageCrossoverStrategy,
     RSIStrategy,
-    BollingerBandsStrategy
+    BollingerBandsStrategy,
     VATSStrategy
 )
+from src.trading.vwap_strategy import VWAPStrategy
 from src.trading.backtest import Backtester
 from config import settings
 from src.utils.logger import get_logger
@@ -32,6 +33,9 @@ STRATEGIES = {
         "class": BollingerBandsStrategy,
         "params": {
             "window": 20,
+            "num_std": 2,
+        },
+    },
             "num_std": 2
     "vats": {
         "name": "VATS (Volatility-Adjusted Trend Score)",
@@ -42,6 +46,13 @@ STRATEGIES = {
             "max_volatility": None,
         },
     },
+    "vwap": {
+        "name": "Rolling VWAP",
+        "class": VWAPStrategy,
+        "params": {
+            "window": 20,
+        },
+    }
 }
 
 def get_strategy(strategy_name):
