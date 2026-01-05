@@ -26,3 +26,18 @@ class VWAPStrategy(TradingStrategy):
             'close_time', 'quote_asset_volume', 'number_of_trades',
             'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignore'
         ])
+
+        # Dataframe column to numeric conversion
+        for col in ['high', 'low', 'close', 'volume']:
+            df[col] = pd.to_numeric(df[col])
+
+        # Typical Price = (High + Low + Close) / 3
+        df['typical_price'] = (df['high'] + df['low'] + df['close']) / 3
+
+        df['vp'] = df['typical_price'] * df['volume']
+
+        # Rolling VWAP Calculation: sum ( Volume * Price ) / sum ( Volume )
+        df['rolling_vp_sum'] = df['vp'].rolling(window=self.window).sum()
+        df['rolling_vol_sum'] = df['volume'].rolling(window=self.window).sum()
+
+        
