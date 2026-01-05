@@ -3,6 +3,7 @@ from src.api.binance_client import get_binance_client
 from src.trading.strategy import (
     MovingAverageCrossoverStrategy,
     RSIStrategy,
+    YOLOStrategy,
     BollingerBandsStrategy,
     VATSStrategy
 )
@@ -28,6 +29,11 @@ STRATEGIES = {
         "class": RSIStrategy,
         "params": {"rsi_period": 14, "rsi_overbought": 70, "rsi_oversold": 30},
     },
+    "yolo": {
+        "name": "YOLO Strategy",
+        "class": YOLOStrategy,
+        "params": {"dip_threshold": 3, "rip_threshold": 3},
+    },
     "bb": {
         "name": "Bollinger Bands Strategy",
         "class": BollingerBandsStrategy,
@@ -36,7 +42,7 @@ STRATEGIES = {
             "num_std": 2,
         },
     },
-            "num_std": 2
+            "num_std": 2,
     "vats": {
         "name": "VATS (Volatility-Adjusted Trend Score)",
         "class": VATSStrategy,
@@ -78,7 +84,7 @@ def main():
         type=str,
         default="ma",
         choices=list(STRATEGIES.keys()),
-        help="Trading strategy to use (default: ma). Options: ma, rsi, bb, vats",
+        help="Trading strategy to use (default: ma). Options: ma, rsi, bb, vats, yolo",
     )
     parser.add_argument(
         "--mode",
