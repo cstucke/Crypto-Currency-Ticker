@@ -4,6 +4,7 @@ from src.trading.strategy import (
     MovingAverageCrossoverStrategy,
     RSIStrategy,
     BollingerBandsStrategy
+    VATSStrategy
 )
 from src.trading.backtest import Backtester
 from config import settings
@@ -32,10 +33,16 @@ STRATEGIES = {
         "params": {
             "window": 20,
             "num_std": 2
+    "vats": {
+        "name": "VATS (Volatility-Adjusted Trend Score)",
+        "class": VATSStrategy,
+        "params": {
+            "lookback_period": 20,
+            "threshold": 0.5,
+            "max_volatility": None,
         },
     },
 }
-
 
 def get_strategy(strategy_name):
     if strategy_name not in STRATEGIES:
@@ -60,7 +67,7 @@ def main():
         type=str,
         default="ma",
         choices=list(STRATEGIES.keys()),
-        help="Trading strategy to use (default: ma). Options: ma, rsi, bb",
+        help="Trading strategy to use (default: ma). Options: ma, rsi, bb, vats",
     )
     parser.add_argument(
         "--mode",
