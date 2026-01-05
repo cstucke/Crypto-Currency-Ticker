@@ -3,6 +3,7 @@ from src.api.binance_client import get_binance_client
 from src.trading.strategy import (
     MovingAverageCrossoverStrategy,
     RSIStrategy,
+    BollingerBandsStrategy
     VATSStrategy
 )
 from src.trading.backtest import Backtester
@@ -26,6 +27,12 @@ STRATEGIES = {
         "class": RSIStrategy,
         "params": {"rsi_period": 14, "rsi_overbought": 70, "rsi_oversold": 30},
     },
+    "bb": {
+        "name": "Bollinger Bands Strategy",
+        "class": BollingerBandsStrategy,
+        "params": {
+            "window": 20,
+            "num_std": 2
     "vats": {
         "name": "VATS (Volatility-Adjusted Trend Score)",
         "class": VATSStrategy,
@@ -60,7 +67,7 @@ def main():
         type=str,
         default="ma",
         choices=list(STRATEGIES.keys()),
-        help="Trading strategy to use (default: ma). Options: ma, rsi, vats",
+        help="Trading strategy to use (default: ma). Options: ma, rsi, bb, vats",
     )
     parser.add_argument(
         "--mode",
@@ -74,6 +81,13 @@ def main():
         type=str,
         default="1 day ago UTC",
         help="Start date for backtesting",
+    )
+    parser.add_argument(
+        "--time-format",
+        type=str,
+        default="unix",
+        choices=["unix", "human"],
+        help="Timestamp format for trade logs: unix or human (default: unix)",
     )
     args = parser.parse_args()
 
@@ -96,6 +110,7 @@ def main():
             settings.SYMBOL,
             settings.INTERVAL,
             args.start_date,
+            time_format=args.time_format,
         )
         backtester.run()
     elif args.mode == "live":
